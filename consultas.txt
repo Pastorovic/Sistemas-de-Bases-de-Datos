@@ -1,0 +1,24 @@
+# consultas.txt
+# Crear la tabla
+CREATE TABLE datacleantable(
+  idref TEXT, ident TEXT,
+  gsm19023 FLOAT,
+  gsd19024 FLOAT,
+  gsd19025 FLOAT,
+  gsd19026 FLOAT,
+  genetitle TEXT, genesymbol TEXT,
+  geneID TEXT, uniGenetitle TEXT,
+  uniGenesymbol TEXT, uniGeneID TEXT,
+  NucleotideTitle TEXT, max FLOAT,
+  min FLOAT, avg FLOAT
+);
+
+# Cargar el fichero de datos DataClean.txt en la tabla
+COPY datacleantable FROM '/home/alumno/DataClean.txt'
+WITH (DELIMITER E'\t', ENCODING ascii);
+
+# Consulta del apartado 4.a
+SELECT gsd19026 FROM datacleantable ORDER BY gsd19026 DESC LIMIT 10;
+
+# Consulta del apartado 4.b
+SELECT avg(gsd19026) FROM datacleantable WHERE genetitle LIKE '%retard%';
